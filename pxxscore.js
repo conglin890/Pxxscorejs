@@ -9,35 +9,44 @@
 
     this.__ = __;
 
+    if (typeof exports !== 'undefined') {
+        if (typeof module !== 'undefined' && module.exports) {
+            exports = module.exports = __;
+        }
+        exports.__ = __;
+    } else {
+        root.__ = __;
+    }
+
+
     __.version = '0.01'; 
-    
-    
+
     __.datetime = {
         format:function(dateFormat, dateStr){
             var paramList = arguments;
             var datetime = new Date( paramList.length > 1 ? dateStr : __.datetime.getCurrtDatetime());
-            
             dateFormat = dateFormat.replace('yyyy', datetime.getFullYear());
-            dateFormat = dateFormat.replace('MM', datetime.getMonth() > 8 ? datetime.getMonth() + 1 : '0' + (datetime.getMonth() + 1).toString())
-            dateFormat = dateFormat.replace('dd', datetime.getDate() > 9 ? datetime.getDate() : '0' + datetime.getDate().toString())
-            dateFormat = dateFormat.replace('HH', datetime.getHours() > 9 ? datetime.getHours() : '0' + datetime.getHours().toString())
-            dateFormat = dateFormat.replace('mm', datetime.getMinutes() > 9 ? datetime.getMinutes() : '0' + datetime.getMinutes().toString())
-            dateFormat = dateFormat.replace('ss', datetime.getSeconds() > 9 ? datetime.getSeconds() : '0' + datetime.getSeconds().toString())
-            
+            dateFormat = dateFormat.replace('MM', __.datetime.formatNumberByZero(datetime.getMonth() + 1));
+            dateFormat = dateFormat.replace('dd', __.datetime.formatNumberByZero(datetime.getDate()));
+            dateFormat = dateFormat.replace('HH', __.datetime.formatNumberByZero(datetime.getHours()));
+            dateFormat = dateFormat.replace('mm', __.datetime.formatNumberByZero(datetime.getMinutes()));
+            dateFormat = dateFormat.replace('ss', __.datetime.formatNumberByZero(datetime.getSeconds()));
             return dateFormat;
         },
+        formatNumberByZero:function(num){
+            return num > 9 ? num : '0' + num.toString();
+        },
         getCurrtDatetime: function (){
-            var paramList = arguments;
             var datetime = new Date();
             var dateStr = datetime.toLocaleDateString('en-US',{year:'numeric', month:'2-digit', day:'2-digit'});
-            var timeStr = datetime.toLocaleTimeString('en-GB');
+            var timeStr = datetime.toLocaleTimeString('en-GB', {hour12:false});
             return __.string.format('? ?',[dateStr, timeStr]);
         },
     }
 
 
     __.location = {
-        search:function(){
+        search:function(paramName){
             if(!(window.location.href.split('?').length > 1)){
                 return null;
             }
@@ -45,7 +54,7 @@
             var paramList = arguments;
             var currtUrl = window.location.href.split('?')[1];
             var paramArr = currtUrl.split('&');
-            
+
             if(paramList.length == 1 && paramArr.length > 0){
                 for(var i = 0 ; i < paramArr.length ; i++){
                     if(paramArr[i].split('=')[0] == paramList[0]){
@@ -53,6 +62,7 @@
                     }
                 }   
             }
+
             if(paramList.length == 0){
                 var result = {};
                 for(var i = 0 ; i < paramArr.length ; i++){
@@ -73,12 +83,6 @@
             }
             return  str;
         },
-        formatByIndex:function (str, list){
-            for(var i = 0; i < list.length ; i++){
-                str = this.replaceAll(str, "\\{" + i +"\\}", list[i])
-            }
-            return str;
-        },
         formatByKey:function (str, obj){
             for(var key in obj){
                 str = this.replaceAll(str, "\\{" + key +"\\}", obj[key])
@@ -91,4 +95,4 @@
         }
     }
 
-  })();
+})();
