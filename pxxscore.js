@@ -14,14 +14,20 @@
             exports = module.exports = __;
         }
         exports.__ = __;
-    } else {
-        root.__ = __;
     }
 
 
     __.version = '0.01'; 
 
-    __.datetime = {
+    __.datetime = { 
+        comparedDate:function(startDate, endDate){
+            var paramList = arguments;
+            if(paramList.length == 1){
+                endDate = __.datetime.format('yyyy/MM/dd');
+            }
+
+            return Math.floor((new Date(startDate).getTime() - new Date(endDate).getTime())/86400000)
+        },
         format:function(dateFormat, dateStr){
             var paramList = arguments;
             var datetime = new Date( paramList.length > 1 ? dateStr : __.datetime.getCurrtDatetime());
@@ -41,7 +47,7 @@
             var dateStr = datetime.toLocaleDateString('en-US',{year:'numeric', month:'2-digit', day:'2-digit'});
             var timeStr = datetime.toLocaleTimeString('en-GB', {hour12:false});
             return __.string.format('? ?',[dateStr, timeStr]);
-        },
+        }
     }
 
 

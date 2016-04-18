@@ -1,12 +1,32 @@
 Pxxscorejs
 ===
-[TOC]
+
+* 概述
+* Datetime
+    *   format
 
 ### 概述
 pxxscorejs是一个Javascript扩展工具类，
 
+
 ### Datetime
 日期时间扩展函数。
+
+##### comparedDate(startDate, endDate)
+计算日期差
+> *__.datetime.comparedDate(startDate, endDate)*      
+>     *startDate:*  必填,开始日期     
+>     *endDate:*  可选, 结束日期， 不填为当前日期     
+
+```javascript
+    //当前日期 2016/04/18
+    __.datetime.comparedDate('04/19/2016');   // ==>  1
+    __.datetime.comparedDate('04/17/2016');   // ==> -1
+    __.datetime.comparedDate('04/17/2016','04/15/2016');  // ==> 2
+    __.datetime.comparedDate('04/17/2016','05/15/2016')； // ==> -28
+```
+
+
 
 ##### format(dateFormat, dateStr)
 格式化日期
