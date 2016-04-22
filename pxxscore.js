@@ -51,7 +51,7 @@
         getDateByDiff:function(diffDay){
             var date = new Date();
             date = new Date(date.getTime() + diffDay * 86400000);
-            return __.datetime.format('dd/MM/yyyy', date.getTime());
+            return __.datetime.format('MM/dd/yyyy', date.getTime());
         }
     }
 
