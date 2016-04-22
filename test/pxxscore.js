@@ -27,6 +27,15 @@ describe('__.datetime', function() {
             log(__.datetime.getCurrtDatetime());
         })
 
+    });
+
+    describe('__.datetime.getDateByDiff()', function(){
+        it('test', function(){
+            log(__.datetime.getDateByDiff(1));
+            log(__.datetime.getDateByDiff(-1));
+        
+        })
+    
     })
 })
 

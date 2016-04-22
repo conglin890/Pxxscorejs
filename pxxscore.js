@@ -47,6 +47,11 @@
             var dateStr = datetime.toLocaleDateString('en-US',{year:'numeric', month:'2-digit', day:'2-digit'});
             var timeStr = datetime.toLocaleTimeString('en-GB', {hour12:false});
             return __.string.format('? ?',[dateStr, timeStr]);
+        },
+        getDateByDiff:function(diffDay){
+            var date = new Date();
+            date = new Date(date.getTime() + diffDay * 86400000);
+            return __.datetime.format('dd/MM/yyyy', date.getTime());
         }
     }
 
@@ -78,7 +83,6 @@
             }
             return null;
         }
-
     }
 
 
@@ -101,4 +105,4 @@
         }
     }
 
-})();
+}).call(this);

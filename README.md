@@ -58,6 +58,17 @@ pxxscorejs是一个Javascript扩展工具类，
     __.datetime.getCurrtDatetime() ;    // ==> 04/16/2016 14:56:44
 ```
 
+##### getDateByDiff()
+获取与当前日期相隔的时间
+> *__.datetime.getCurrtDatetime(diffDay)*     
+>     *diffDay:* 与当前日期相差天数，接受+-值    
+
+```javascript
+    __.datetime.getDateBuDiff(1) ;    // ==> 04/16/2016
+    __.datetime.getDateBuDiff(-1) ;    // ==> 04/14/2016
+```
+
+
 ### location
 Url 扩展函数
 
