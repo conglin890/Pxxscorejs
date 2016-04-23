@@ -48,8 +48,8 @@
             var timeStr = datetime.toLocaleTimeString('en-GB', {hour12:false});
             return __.string.format('? ?',[dateStr, timeStr]);
         },
-        getDateByDiff:function(diffDay){
-            var date = new Date();
+        getDateByDiff:function(diffDay, date){
+            var date = (date == undefined ? new Date() : new Date(date));
             date = new Date(date.getTime() + diffDay * 86400000);
             return __.datetime.format('MM/dd/yyyy', date.getTime());
         }

@@ -60,12 +60,16 @@ pxxscorejs是一个Javascript扩展工具类，
 
 ##### getDateByDiff()
 获取与当前日期相隔的时间
-> *__.datetime.getCurrtDatetime(diffDay)*     
->     *diffDay:* 与当前日期相差天数，接受+-值    
+> *__.datetime.getCurrtDatetime(diffDay, date)*     
+>     *diffDay:* 与当前日期相差天数，接受+-值  
+>     *date:*  开始计算的起始日期     
 
 ```javascript
     __.datetime.getDateBuDiff(1) ;    // ==> 04/16/2016
     __.datetime.getDateBuDiff(-1) ;    // ==> 04/14/2016
+    __.datetime.getDateByDiff(-1, '2015/07/01')   // ==> 06/30/2015
+    __.datetime.getDateByDiff(1, '2015/07/01')    // ==> 07/02/2015
+
 ```
 
 

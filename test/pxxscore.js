@@ -33,6 +33,8 @@ describe('__.datetime', function() {
         it('test', function(){
             log(__.datetime.getDateByDiff(1));
             log(__.datetime.getDateByDiff(-1));
+            log(__.datetime.getDateByDiff(-1, '2015/07/01'));
+            log(__.datetime.getDateByDiff(1, '2015/07/01'));
         
         })
     
